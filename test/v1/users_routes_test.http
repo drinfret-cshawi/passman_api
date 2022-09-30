@@ -1,0 +1,60 @@
+### GET /v1/users/
+GET http://localhost:8000/v1/users/
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  const type = response.contentType.mimeType;
+  client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+});
+%}
+
+### GET /v1/users/{id:[0-9]+}
+GET http://localhost:8000/v1/users/1
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  const type = response.contentType.mimeType;
+  client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+});
+%}
+
+### POST /v1/users/
+POST http://localhost:8000/v1/users/
+Content-Type: application/x-www-form-urlencoded
+
+username=bob&fullname=Bob%20Bob&password=1212121212121212&email=bob@bob.com
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  const type = response.contentType.mimeType;
+  client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+});
+%}
+
+### DELETE /v1/users/{id:[0-9]+}
+DELETE http://localhost:8000/v1/users/7
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  const type = response.contentType.mimeType;
+  client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+});
+%}
+
+### PUT /v1/users/{id:[0-9]+}
+PUT http://localhost:8000/v1/users/7
+Content-Type: application/x-www-form-urlencoded
+
+username=bob2&fullname=Bob%20Bob2&password=232323232323232&email=bob2@bob.com
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  const type = response.contentType.mimeType;
+  client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+});
+%}

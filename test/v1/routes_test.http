@@ -1,0 +1,23 @@
+### v1/one
+GET http://localhost:8000/v1/one
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  client.assert(response.contentType.mimeType === "application/json", "Response content type is not json")
+  const type = response.contentType.mimeType;
+  client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+});
+%}
+
+### v1/two
+GET http://localhost:8000/v1/two
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+  const type = response.contentType.mimeType;
+  client.assert(type === "text/html", "Expected 'application/json' but received '" + type + "'");
+});
+%}
+
